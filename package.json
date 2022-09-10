@@ -1,0 +1,23 @@
+{
+  "name": "eth-staker",
+  "version": "1.0.0",
+  "description": "ETH Staking Dapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "eth",
+    "staking",
+    "dapp",
+    "solidity",
+    "hardhat",
+    "React.js",
+    "aave"
+  ],
+  "author": "Umair Mirza",
+  "license": "ISC",
+  "devDependencies": {
+    "hardhat": "^2.11.1"
+  }
+}
