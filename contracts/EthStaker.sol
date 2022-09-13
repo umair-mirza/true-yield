@@ -33,10 +33,19 @@ contract EthStaker {
     mapping (uint => uint) public tiers;
 
     //Array that contains integers for lock periods (30 days, 90 days, 365 days)
-    uint256 public lockPeriods;
+    uint256[] public lockPeriods;
 
     //Payable to allow the deployer of the contract to send Ether to it when its being deployed
     constructor() payable {
         owner = msg.sender;
+        currentPositionId = 0;
+
+        tiers[30] = 700; //700 basis points which is 7% APY
+        tiers[90] = 1000; //10% APY
+        tiers[365] = 12000; //12% APY
+
+        lockPeriods.push(30);
+        lockPeriods.push(90);
+        lockPeriods.push(365);
     }
 }
