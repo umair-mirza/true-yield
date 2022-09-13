@@ -48,4 +48,24 @@ contract EthStaker {
         lockPeriods.push(90);
         lockPeriods.push(365);
     }
+
+    function stakeEther(uint numDays) external payable {
+        //To make sure that the number of Days belong to one of the tiers
+        require(tiers[numDays] > 0, "Mapping not found");
+
+        positions[currentPositionId] = Position(
+            currentPositionId,
+            msg.sender,
+            block.timestamp, //creation date
+            block.timestamp + (numDays * 1 days), //unlock date
+            tiers[numDays], //interest rate
+            msg.value, //Ether to be staked
+            calculateInterest(tiers[numDays], numDays, msg.value), //function to calculate the interest
+            true //position status is set to open until user closes it
+        );
+
+        //To get the Ids of the positions a user owns
+        positionIdsByAddress[msg.sender].push(currentPositionId);
+        currentPositionId += 1;
+    }
 }
