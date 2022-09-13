@@ -68,4 +68,15 @@ contract EthStaker {
         positionIdsByAddress[msg.sender].push(currentPositionId);
         currentPositionId += 1;
     }
+
+    function calculateInterest(uint basisPoints, uint numDays, uint weiAmount) private pure returns (uint) {
+        return basisPoints * weiAmount / 10000;
+    }
+
+    function changeLockPeriods(uint numDays, uint basisPoints) external {
+        require(owner == msg.sender, "Only owner can modify the staking periods");
+
+        tiers[numDays] = basisPoints;
+        lockPeriods.push(numDays);
+    }
 }
