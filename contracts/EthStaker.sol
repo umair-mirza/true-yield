@@ -79,4 +79,50 @@ contract EthStaker {
         tiers[numDays] = basisPoints;
         lockPeriods.push(numDays);
     }
+
+    //Owner can change unlock date for a specific position
+    function changeUnlockDate(uint positionId, uint newUnlockDate) external {
+        require(owner == msg.sender, "Only owner can change Unlock date");
+
+        positions[positionId].unlockDate = newUnlockDate;
+    }
+
+    //Allows the user to un-stake their Ether
+    function closePosition(uint positionId) external {
+        require(positions[positionId].walletAddress == msg.sender, "Only the creator can modify the position");
+        require(positions[positionId].open == true, "Position is closed");
+
+        positions[positionId].open == false;
+
+        //If the user is un-staking before the Unlock period, they won't gain any interest
+        if(block.timestamp > positions[positionId].unlockDate) {
+            uint amount = positions[positionId].weiStaked + positions[positionId].weiInterest;
+            (bool success, ) = payable(msg.sender).call{value: amount}("");
+            require(success, "Transaction failed");
+        } else {
+            (bool success, ) = payable(msg.sender).call{value: positions[positionId].weiStaked}("");
+            require(success, "Transaction failed");
+        }
+
+    }
+
+    /* Getter Functions */
+
+    function getLockPeriods() external view returns(uint[] memory) {
+        return lockPeriods;
+    }
+
+    function getInterestRates(uint numDays) external view returns(uint) {
+        return tiers[numDays];
+    }
+
+    function getPositionById(uint positionId) external view returns(Position memory) {
+        return positions[positionId];
+    }
+
+    function getAllPositionIdsByAddress(address walletAddress) external view returns(uint[] memory) {
+        return positionIdsByAddress[walletAddress];
+    }
+
+    
 }
