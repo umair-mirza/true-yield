@@ -1,7 +1,7 @@
 {
-  "name": "eth-staker",
+  "name": "true-yield",
   "version": "1.0.0",
-  "description": "ETH Staking Dapp",
+  "description": "Stake your Eth and Generate Yield with Customized Plans",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
