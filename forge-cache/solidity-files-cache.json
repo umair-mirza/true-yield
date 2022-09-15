@@ -12,49 +12,10 @@
     ]
   },
   "files": {
-    "contracts/Counter.sol": {
-      "lastModificationDate": 1663256097708,
-      "contentHash": "063d1192e5b4e76cc73182123b32067a",
-      "sourceName": "contracts/Counter.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs"
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ]
-            }
-          },
-          "evmVersion": "london",
-          "libraries": {}
-        }
-      },
-      "imports": [],
-      "versionRequirement": "^0.8.13",
-      "artifacts": {
-        "Counter": {
-          "0.8.16+commit.07a7930e.Windows.msvc": "Counter.sol\\Counter.json"
-        }
-      }
-    },
-    "contracts/EthStaker.sol": {
-      "lastModificationDate": 1663094133605,
-      "contentHash": "3849d59669918f517cf57df53449f76a",
-      "sourceName": "contracts/EthStaker.sol",
+    "contracts/TrueYield.sol": {
+      "lastModificationDate": 1663266332358,
+      "contentHash": "50a3a5b3e50cf7cbde20d0da134d79f5",
+      "sourceName": "contracts/TrueYield.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
@@ -85,8 +46,8 @@
       "imports": [],
       "versionRequirement": "^0.8.0",
       "artifacts": {
-        "EthStaker": {
-          "0.8.16+commit.07a7930e.Windows.msvc": "EthStaker.sol\\EthStaker.json"
+        "TrueYield": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "TrueYield.sol\\TrueYield.json"
         }
       }
     },
@@ -386,10 +347,10 @@
         }
       }
     },
-    "test/foundry/Counter.t.sol": {
-      "lastModificationDate": 1663256144127,
-      "contentHash": "89bd7ed031586fcabdc8677c897ae123",
-      "sourceName": "test/foundry/Counter.t.sol",
+    "test/foundry/TrueYield.t.sol": {
+      "lastModificationDate": 1663270999739,
+      "contentHash": "9cbe0b0d816a3770105485a5ae7b43fd",
+      "sourceName": "test/foundry/TrueYield.t.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
@@ -418,7 +379,7 @@
         }
       },
       "imports": [
-        "contracts\\Counter.sol",
+        "contracts\\TrueYield.sol",
         "lib/forge-std/lib/ds-test/src\\test.sol",
         "lib/forge-std/src/Script.sol",
         "lib/forge-std/src/StdJson.sol",
@@ -427,10 +388,10 @@
         "lib/forge-std/src/console.sol",
         "lib/forge-std/src/console2.sol"
       ],
-      "versionRequirement": "^0.8.13",
+      "versionRequirement": "^0.8.0",
       "artifacts": {
-        "CounterTest": {
-          "0.8.16+commit.07a7930e.Windows.msvc": "Counter.t.sol\\CounterTest.json"
+        "TrueYieldTest": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "TrueYield.t.sol\\TrueYieldTest.json"
         }
       }
     }
