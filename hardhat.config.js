@@ -39,7 +39,7 @@ const POLYGONSCAN_API_KEY =
 const REPORT_GAS = process.env.REPORT_GAS || false;
 
 module.exports = {
-    defaultNetwork: "goerli", //change to "hardhat" to deploy to local hardhat network
+    defaultNetwork: "hardhat", //change to "hardhat" to deploy to local hardhat network
     networks: {
         hardhat: {
             // // If you want to do some forking, uncomment this
