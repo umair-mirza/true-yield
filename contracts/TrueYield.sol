@@ -69,7 +69,7 @@ contract TrueYield {
         currentPositionId += 1;
     }
 
-    function calculateInterest(uint basisPoints, uint numDays, uint weiAmount) private pure returns (uint) {
+    function calculateInterest(uint basisPoints, uint numDays, uint weiAmount) public pure returns (uint) {
         return basisPoints * weiAmount / 10000;
     }
 
