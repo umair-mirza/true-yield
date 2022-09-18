@@ -133,9 +133,9 @@ module.exports = {
       },
     ],
   },
-  // paths: {
-  //   artifacts: "./client/src/artifacts",
-  // },
+  paths: {
+    artifacts: "./client/src/artifacts",
+  },
   mocha: {
     timeout: 500000, // 500 seconds max for running tests
   },
