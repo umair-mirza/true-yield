@@ -21,15 +21,15 @@ async function main() {
 
     const provider = ethers.getDefaultProvider();
 
-    //First Transaction from player account
+    //First Transaction from Signer2 account
     data = {value: ethers.utils.parseEther('0.5')}
     transaction = await trueYieldContract.connect(signer2).stakeEther(30, data)
 
-    //Second Transaction from Player account
+    //Second Transaction from Signer2 account
     data = {value: ethers.utils.parseEther('0.5')}
     transaction = await trueYieldContract.connect(signer2).stakeEther(90, data)
 
-    //Third Transaction from Player account that will verify backdated staking result
+    //Third Transaction from Signer2 account that will verify backdated staking result
     data = {value: ethers.utils.parseEther('0.5')}
     transaction = await trueYieldContract.connect(signer2).stakeEther(90, data)
     receipt = await transaction.wait()
