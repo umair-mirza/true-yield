@@ -42,7 +42,7 @@ contract TrueYield {
 
         tiers[30] = 700; //700 basis points which is 7% APY
         tiers[90] = 1000; //10% APY
-        tiers[365] = 12000; //12% APY
+        tiers[365] = 1200; //12% APY
 
         lockPeriods.push(30);
         lockPeriods.push(90);
@@ -92,7 +92,7 @@ contract TrueYield {
         require(positions[positionId].walletAddress == msg.sender, "Only the creator can modify the position");
         require(positions[positionId].open == true, "Position is closed");
 
-        positions[positionId].open == false;
+        positions[positionId].open = false;
 
         //If the user is un-staking before the Unlock period, they won't gain any interest
         if(block.timestamp > positions[positionId].unlockDate) {

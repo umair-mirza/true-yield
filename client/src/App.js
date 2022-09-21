@@ -1,4 +1,4 @@
-import react, {useState, useEffect} from "react"
+import React, {useState, useEffect} from "react"
 import {ethers} from 'ethers'
 import artifacts from './artifacts/contracts/TrueYield.sol/TrueYield.json'
 import {bytesToStrings, toEther, toWei} from './helpers/helpers'
@@ -41,7 +41,7 @@ function App() {
       setContract(contract)
     }
     onLoad()
-  }, [])
+  }, [assets])
 
   const isConnected = () => signer !== undefined
 
@@ -58,7 +58,7 @@ function App() {
   }
 
   const getAssets = async (ids, signer) => {
-    //Using a Promise.all so that we can wait until we can the data for all the positii=ons
+    //Using a Promise.all so that we can wait until we can get the data for all the positions
     const queriedAssets = await Promise.all(
       ids.map(id => contract.connect(signer).getPositionById(id))
     )
@@ -249,7 +249,11 @@ function App() {
                                 {asset.daysRemaining} days
                             </td>
                             <td class="py-4 px-6">
-                              <button onClick={() => withdraw(asset.positionId)} className="mt-4 bg-fuchsia-200 opacity-75 py-1 px-4 text-lg text-gray-900 font-semibold hover:font-bold hover:outline-2 transition-all duration-200">Withdraw</button>
+                              {asset.open ? (
+                                <button onClick={() => withdraw(asset.positionId)} className="mt-4 bg-fuchsia-200 opacity-75 py-1 px-4 text-lg text-gray-900 font-semibold hover:font-bold hover:outline-2 transition-all duration-200">Withdraw</button>
+                              ) : (
+                                <span>Closed</span>
+                              )}
                             </td>
                           </tr>
                         )
