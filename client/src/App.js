@@ -110,6 +110,7 @@ function App() {
     const wei = toWei(amount)
     const data = {value: wei}
     contract.connect(signer).stakeEther(stakingLength, data)
+    console.log(String(wei))
   }
 
   const withdraw = positionId => {
@@ -122,19 +123,20 @@ function App() {
         <Header isConnected={isConnected} connect={connectAndLoad} />
       </div>
 
-      <div className="mt-8 text-center">
+      <div className="mt-6 text-center">
         <div className="font-extrabold text-transparent text-4xl md:text-6xl bg-clip-text bg-gradient-to-b from-gray-300 via-gray-300 to-purple-300 tracking-wide">
           TrueYield
         </div>
+        <div className="mt-3 font-extrabold text-transparent text-lg md:text-xl bg-clip-text bg-gradient-to-r from-fuchsia-300 to-purple-300 opacity-80">
+          Deposit your ETH and Earn Amazing APY
+        </div>
       </div>
 
-        <div className="mt-8 flex justify-center">
+        <div className="mt-9 flex justify-center">
           <div className="relative group w-3/5 px-16 py-6 bg-neutral-900 rounded-lg">
             <div className="absolute inset-0 -z-10 bg-gradient-to-r from-gray-400 to-purple-500 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-200"></div>
-            <div className="text-center text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-fuchsia-600">
-              1 ETH = $1300
-            </div>
-            <div className="mt-6 flex justify-between">
+            <div className="flex justify-between">
+              <div className="px-4 py-6 bg-gradient-to-t from-sky-700 via-zinc-700 to-zinc-800 rounded-lg shadow-lg">
                 <div className="flex flex-col justify-center text-fuchsia-200 text-center">
                   <div className="flex justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-14 h-12">
@@ -142,13 +144,37 @@ function App() {
                     </svg>
                   </div>
                   <div className="text-lg leading-none mt-3">
-                    30 Days with 7% APY
+                    Staking Period: 30 Days
+                  </div>
+                  <div className="text-lg leading-none mt-3">
+                    Interest: 7% APY
                   </div>
                   <div>
-                    <button className="mt-4 bg-fuchsia-200 opacity-75 py-1 px-4 text-lg text-gray-900 font-semibold hover:font-bold hover:outline-2 transition-all duration-200">Stake</button>
+                    <button onClick={() => openStakingModal(30, '7%')} className="mt-4 bg-fuchsia-200 opacity-75 py-1 px-4 text-lg text-gray-900 font-semibold hover:font-bold hover:outline-2 transition-all duration-200">Stake</button>
                   </div>
+                </div>
+              </div>
+              
+              <div className="px-4 py-6 bg-gradient-to-t from-lime-700 via-zinc-700 to-zinc-800 rounded-lg shadow-lg">
+                <div className="flex flex-col justify-center text-fuchsia-200 text-center">
+                  <div className="flex justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-14 h-12">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
+                    </svg>
+                  </div>
+                  <div className="text-lg leading-none mt-3">
+                    Staking Period: 90 Days
+                  </div>
+                  <div className="text-lg leading-none mt-3">
+                    Interest: 10% APY
+                  </div>
+                  <div>
+                    <button onClick={() => openStakingModal(90, '10%')} className="mt-4 bg-fuchsia-200 opacity-75 py-1 px-4 text-lg text-gray-900 font-semibold hover:font-bold hover:outline-2 transition-all duration-200">Stake</button>
+                  </div>
+                </div>
                 </div>
 
+                <div className="px-4 py-6 bg-gradient-to-t from-purple-700 via-zinc-700 to-zinc-800 rounded-lg shadow-lg">
                 <div className="flex flex-col justify-center text-fuchsia-200 text-center">
                   <div className="flex justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-14 h-12">
@@ -156,26 +182,17 @@ function App() {
                     </svg>
                   </div>
                   <div className="text-lg leading-none mt-3">
-                    90 Days with 10% APY
+                    Staking Period: 365 Days
+                  </div>
+                  <div className="text-lg leading-none mt-3">
+                    Interest: 12% APY
                   </div>
                   <div>
-                    <button className="mt-4 bg-fuchsia-200 opacity-75 py-1 px-4 text-lg text-gray-900 font-semibold hover:font-bold hover:outline-2 transition-all duration-200">Stake</button>
+                    <button onClick={() => openStakingModal(365, '12%')} className="mt-4 bg-fuchsia-200 opacity-75 py-1 px-4 text-lg text-gray-900 font-semibold hover:font-bold hover:outline-2 transition-all duration-200">Stake</button>
                   </div>
+                </div>
                 </div>
 
-                <div className="flex flex-col justify-center text-fuchsia-200 text-center">
-                  <div className="flex justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-14 h-12">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
-                    </svg>
-                  </div>
-                  <div className="text-lg leading-none mt-3">
-                    365 Days with 12% APY
-                  </div>
-                  <div>
-                    <button className="mt-4 bg-fuchsia-200 opacity-75 py-1 px-4 text-lg text-gray-900 font-semibold hover:font-bold hover:outline-2 transition-all duration-200">Stake</button>
-                  </div>
-                </div>
             </div>
           </div>
         </div>
@@ -212,7 +229,33 @@ function App() {
                       </tr>
                   </thead>
                   <tbody className="text-lg text-gray-200 text-center">
-                      <tr class="bg-neutral-700 border-b border-neutral-400">
+                    {
+                      assets.length > 0 && assets.map((asset) => {
+                        return (
+                          <tr class="bg-neutral-700 border-b border-neutral-400">
+                            <td class="py-4 px-6">
+                                ETH
+                            </td>
+                            <td class="py-4 px-6">
+                                {asset.percentInterest}%
+                            </td>
+                            <td class="py-4 px-6">
+                                {asset.etherStaked} ETH
+                            </td>
+                            <td class="py-4 px-6">
+                                {asset.etherInterest} ETH
+                            </td>
+                            <td class="py-4 px-6">
+                                {asset.daysRemaining} days
+                            </td>
+                            <td class="py-4 px-6">
+                              <button onClick={() => withdraw(asset.positionId)} className="mt-4 bg-fuchsia-200 opacity-75 py-1 px-4 text-lg text-gray-900 font-semibold hover:font-bold hover:outline-2 transition-all duration-200">Withdraw</button>
+                            </td>
+                          </tr>
+                        )
+                      })
+                    }
+                      {/* <tr class="bg-neutral-700 border-b border-neutral-400">
                           <td class="py-4 px-6">
                               White
                           </td>
@@ -271,7 +314,7 @@ function App() {
                           <td class="py-4 px-6">
                             <button className="mt-4 bg-fuchsia-200 opacity-75 py-1 px-4 text-lg text-gray-900 font-semibold hover:font-bold hover:outline-2 transition-all duration-200">Withdraw</button>
                           </td>
-                      </tr>
+                      </tr> */}
                   </tbody>
               </table>
           </div>
@@ -282,7 +325,7 @@ function App() {
         {
           showStakeModal && (
             <Modal 
-              onClose={() => showStakeModal(false)}
+              setShowStakeModal={setShowStakeModal}
               stakingLength={stakingLength}
               stakingPercent={stakingPercent}
               amount={amount}
