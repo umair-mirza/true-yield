@@ -2,7 +2,22 @@
 
 pragma solidity ^0.8.0;
 
+// import "./IWeth.sol";
+
+// interface IaToken {
+//     function balanceOf(address _user) external view returns (uint256);
+//     function redeem(uint256 _amount) external;
+// }
+
+// interface IAaveLendingPool {
+//     function deposit(address _reserve, uint256 _amount, uint16 _referralCode) external;
+// }
+
 contract TrueYield {
+
+    // IWeth public iWeth = IWeth(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2);
+    // IaToken public aToken = IaToken(0x22404B0e2a7067068AcdaDd8f9D586F834cCe2c5);
+    // IAaveLendingPool public aaveLendingPool = IAaveLendingPool();
 
     address public owner;
 

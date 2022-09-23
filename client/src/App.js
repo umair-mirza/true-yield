@@ -6,7 +6,7 @@ import Header from "./components/Header"
 import './App.css';
 import Modal from "./components/Modal"
 
-const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+const CONTRACT_ADDRESS = "0x65AF5571ffD5098cc608d9789fCCaaF3E109970D"
 
 function App() {
   //General frontend variables
@@ -41,7 +41,7 @@ function App() {
       setContract(contract)
     }
     onLoad()
-  }, [assets])
+  }, [])
 
   const isConnected = () => signer !== undefined
 

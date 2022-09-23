@@ -1,0 +1,11 @@
+Goerli Deployed Contract: https://goerli.etherscan.io/address/0x65AF5571ffD5098cc608d9789fCCaaF3E109970D
+
+WETH Goerli Address: 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+
+Aave Lending Pool (Goerli): 0x4bd5643ac6f66a5237E18bfA7d47cF22f1c9F210
+
+ILendingPool (v2): https://docs.aave.com/developers/v/2.0/the-core-protocol/lendingpool/ilendingpool
+ILendingPoolAddressesProvider (v2): https://docs.aave.com/developers/v/2.0/the-core-protocol/addresses-provider/ilendingpooladdressesprovider
+
+Aave Deployed Contracts (v2): https://docs.aave.com/developers/v/2.0/deployed-contracts/deployed-contracts
+

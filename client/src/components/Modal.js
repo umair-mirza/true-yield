@@ -8,6 +8,11 @@ const Modal = ({setShowStakeModal, stakingLength, stakingPercent, amount, setAmo
         }
     }
 
+    const handleStakeEther = () => {
+        stakeEther()
+        setShowStakeModal(false)
+    }
+
   return (
     <div>
         <div id="outerSpace" onClick={handleOnClose} className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex items-center justify-center">
@@ -30,7 +35,7 @@ const Modal = ({setShowStakeModal, stakingLength, stakingPercent, amount, setAmo
                             <span>Duration: <span className="text-gray-100 font-semibold">{stakingLength} days</span>    |   </span>
                             <span>Interest: <span className="text-gray-100 font-semibold">{stakingPercent} APY</span></span>
                             </div>
-                            <button onClick={() => stakeEther()} data-modal-toggle="popup-modal" type="button" className="mt-6 bg-fuchsia-200 opacity-75 py-1 px-4 text-lg text-gray-900 font-semibold hover:font-bold hover:outline-2 transition-all duration-200">
+                            <button onClick={handleStakeEther} data-modal-toggle="popup-modal" type="button" className="mt-6 bg-fuchsia-200 opacity-75 py-1 px-4 text-lg text-gray-900 font-semibold hover:font-bold hover:outline-2 transition-all duration-200">
                                 Stake
                             </button>
                         </div>
