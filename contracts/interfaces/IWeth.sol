@@ -1,7 +1,10 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.4.19;
+// pragma solidity ^0.4.19;
+pragma solidity ^0.8.0;
 
-interface IWeth {
+import "@openzeppelin/contracts/interfaces/IERC20.sol";
+
+interface IWeth is IERC20 {
   function allowance(address owner, address spender) external view returns (uint256 remaining);
 
   function approve(address spender, uint256 value) external returns (bool success);

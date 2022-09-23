@@ -2,22 +2,14 @@
 
 pragma solidity ^0.8.0;
 
-// import "./IWeth.sol";
-
-// interface IaToken {
-//     function balanceOf(address _user) external view returns (uint256);
-//     function redeem(uint256 _amount) external;
-// }
-
-// interface IAaveLendingPool {
-//     function deposit(address _reserve, uint256 _amount, uint16 _referralCode) external;
-// }
+import "@openzeppelin/contracts/interfaces/IERC20.sol";
+import "./interfaces/IWeth.sol";
+import "./interfaces/ILendingPool.sol";
 
 contract TrueYield {
 
-    // IWeth public iWeth = IWeth(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2);
-    // IaToken public aToken = IaToken(0x22404B0e2a7067068AcdaDd8f9D586F834cCe2c5);
-    // IAaveLendingPool public aaveLendingPool = IAaveLendingPool();
+    IWeth public iWeth = IWeth(0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6);
+    ILendingPool public lendingPool = ILendingPool(0x4bd5643ac6f66a5237E18bfA7d47cF22f1c9F210);
 
     address public owner;
 
@@ -82,6 +74,12 @@ contract TrueYield {
         //To get the Ids of the positions a user owns
         positionIdsByAddress[msg.sender].push(currentPositionId);
         currentPositionId += 1;
+
+        //Convert ETH to WETH
+        iWeth.deposit{value: msg.value}();
+        //Deposit to Aave Lending pool
+        // iWeth.approve(address(lendingPool), msg.value);
+        // lendingPool.deposit(address(iWeth), msg.value, address(this), 0);
     }
 
     function calculateInterest(uint basisPoints, uint numDays, uint weiAmount) public pure returns (uint) {
@@ -108,6 +106,11 @@ contract TrueYield {
         require(positions[positionId].open == true, "Position is closed");
 
         positions[positionId].open = false;
+
+        //Withdraw lended funds from the Aave lending pool
+        lendingPool.withdraw(address(iWeth), positions[positionId].weiStaked, address(this));
+        //Convert WETH back to ETH
+        iWeth.withdraw(positions[positionId].weiStaked);
 
         //If the user is un-staking before the Unlock period, they won't gain any interest
         if(block.timestamp > positions[positionId].unlockDate) {
@@ -137,6 +140,11 @@ contract TrueYield {
 
     function getAllPositionIdsByAddress(address walletAddress) external view returns(uint[] memory) {
         return positionIdsByAddress[walletAddress];
+    }
+
+    function wethBalance() external view returns(uint256 _balance) {
+        _balance = iWeth.balanceOf(address(this));
+        return _balance;
     }
 
     

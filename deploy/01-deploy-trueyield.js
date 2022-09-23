@@ -30,7 +30,7 @@ const {
   const trueYield = await deploy("TrueYield", {
     from: deployer,
     args: arguments,
-    value: ethers.utils.parseEther('0.2'),
+    value: ethers.utils.parseEther('0.02'),
     log: true,
     waitConfirmations: waitBlockConfirmations,
   })
