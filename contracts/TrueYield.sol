@@ -5,11 +5,18 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/interfaces/IERC20.sol";
 import "./interfaces/IWeth.sol";
 import "./interfaces/ILendingPool.sol";
+import "./interfaces/IWETHGateway.sol";
 
 contract TrueYield {
 
     IWeth public iWeth = IWeth(0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6);
-    ILendingPool public lendingPool = ILendingPool(0x4bd5643ac6f66a5237E18bfA7d47cF22f1c9F210);
+    // ILendingPool public lendingPool = ILendingPool(0x4bd5643ac6f66a5237E18bfA7d47cF22f1c9F210);
+
+    IWETHGateway public iWethGateway = IWETHGateway(0x3bd3a20Ac9Ff1dda1D99C0dFCE6D65C4960B3627);
+
+    address public constant lendingPoolAddress = 0x4bd5643ac6f66a5237E18bfA7d47cF22f1c9F210;
+
+    address public constant aWethAddress = 0x22404B0e2a7067068AcdaDd8f9D586F834cCe2c5;
 
     address public owner;
 
@@ -76,10 +83,14 @@ contract TrueYield {
         currentPositionId += 1;
 
         //Convert ETH to WETH
-        iWeth.deposit{value: msg.value}();
+        // iWeth.deposit{value: msg.value}();
         //Deposit to Aave Lending pool
         // iWeth.approve(address(lendingPool), msg.value);
         // lendingPool.deposit(address(iWeth), msg.value, address(this), 0);
+
+        //Deposit ETH via WETHGateway
+        //It will convert ETH to WETH and also send funds to the lending pool
+        iWethGateway.depositETH{value: msg.value}(lendingPoolAddress, address(this), 0);
     }
 
     function calculateInterest(uint basisPoints, uint numDays, uint weiAmount) public pure returns (uint) {
@@ -108,9 +119,15 @@ contract TrueYield {
         positions[positionId].open = false;
 
         //Withdraw lended funds from the Aave lending pool
-        lendingPool.withdraw(address(iWeth), positions[positionId].weiStaked, address(this));
+        // lendingPool.withdraw(address(iWeth), positions[positionId].weiStaked, address(this));
         //Convert WETH back to ETH
-        iWeth.withdraw(positions[positionId].weiStaked);
+        // iWeth.withdraw(positions[positionId].weiStaked);
+
+        //Withdraw lended funds via the Weth Gateway
+        //It will convert back the WETH to ETH and send it to the contract
+
+        IERC20(aWethAddress).approve(address(iWethGateway), type(uint256).max);
+        iWethGateway.withdrawETH(lendingPoolAddress, positions[positionId].weiStaked, address(this));
 
         //If the user is un-staking before the Unlock period, they won't gain any interest
         if(block.timestamp > positions[positionId].unlockDate) {
@@ -140,11 +157,6 @@ contract TrueYield {
 
     function getAllPositionIdsByAddress(address walletAddress) external view returns(uint[] memory) {
         return positionIdsByAddress[walletAddress];
-    }
-
-    function wethBalance() external view returns(uint256 _balance) {
-        _balance = iWeth.balanceOf(address(this));
-        return _balance;
     }
 
     

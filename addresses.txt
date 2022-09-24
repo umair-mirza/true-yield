@@ -10,3 +10,6 @@ ILendingPoolAddressesProvider (v2): https://docs.aave.com/developers/v/2.0/the-c
 Aave Deployed Contracts (v2): https://docs.aave.com/developers/v/2.0/deployed-contracts/deployed-contracts
 
 WETH Gateway (Alternate Option): https://docs.aave.com/developers/v/2.0/the-core-protocol/weth-gateway
+WETH Gateway Contract: https://goerli.etherscan.io/address/0x3bd3a20Ac9Ff1dda1D99C0dFCE6D65C4960B3627#code
+
+Aave Goerli Dashboard: https://staging.aave.com/?marketName=proto_goerli
