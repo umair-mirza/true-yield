@@ -19,6 +19,9 @@ contract TrueYield {
     //IWETHGateway interface for the Goerli testnet
     IWETHGateway public iWethGateway = IWETHGateway(0x3bd3a20Ac9Ff1dda1D99C0dFCE6D65C4960B3627);
 
+    //ILendingPool interface
+    ILendingPool public iLendingPool = ILendingPool(0x4bd5643ac6f66a5237E18bfA7d47cF22f1c9F210);
+
     //Lending Pool address for the Aave (v2) lending pool on Goerli testnet
     address public constant lendingPoolAddress = 0x4bd5643ac6f66a5237E18bfA7d47cF22f1c9F210;
 
@@ -172,6 +175,10 @@ contract TrueYield {
 
     function getWeiFromPosition(uint positionId) external view returns(uint) {
         return positions[positionId].weiStaked;
+    }
+
+    function getContractAWETHBalance() external view returns(uint) {
+        return IERC20(aWethAddress).balanceOf(address(this));
     }
 
     //Receive function is needed because withdrawETH is sending funds to the contract
