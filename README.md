@@ -4,6 +4,7 @@ TrueYield is a DeFi Staking dapp that lets you stake your ETH and Generate Passi
 Contract is deployed on **Goerli Testnet**.
 
 ### Live Application URL:
+https://trueyield.netlify.app/
 
 ### Deployed Contract:
 https://goerli.etherscan.io/address/0x3B553618f0450D5427fB75e5B93d0eCfa4A447b5
