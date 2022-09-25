@@ -3,20 +3,21 @@
 pragma solidity ^0.8.0;
 
 import "forge-std/Test.sol";
-import "../../contracts/TrueYield.sol";
+import "../../contracts/mocks/MockTrueYield.sol";
 
 contract TrueYieldTest is Test {
-    TrueYield public trueYield;
+    MockTrueYield public trueYield;
 
     address owner = address(0x1234);
     address userOne = address(0x1122);
+    address userTwo = address(0x1123);
     address deployer;
 
     //Setup Function
     //Owner deployed the contract
     function setUp() public {
         vm.startPrank(owner);
-        trueYield = new TrueYield();
+        trueYield = new MockTrueYield();
         deployer = owner;
         vm.stopPrank();
     }
@@ -99,7 +100,7 @@ contract TrueYieldTest is Test {
         vm.stopPrank();
     }
 
-    //Test if the user earn the right amount of interest if he closes position after the unlock date (TEST-9)
+    //Test if the user earns the right amount of interest if he closes position after the unlock date (TEST-9)
     function testCloseAfterUnlock() public {
         //First stake the amount from userOne
         vm.startPrank(userOne);
@@ -129,6 +130,49 @@ contract TrueYieldTest is Test {
 
         assertGt(block.timestamp, trueYield.getPositionById(0).unlockDate);
         assertEq(balanceAfter, trueYield.getPositionById(0).weiStaked + balanceBefore + trueYield.getPositionById(0).weiInterest);
+        vm.stopPrank();
+    }
+
+    //Test if the stakeEther function fails for non-existing Tier
+    function testFailNonExistingTier() public {
+        vm.startPrank(userOne);
+        vm.deal(userOne, 1 ether);
+
+        trueYield.stakeEther{value: 0.5 ether}(50);
+        vm.expectRevert(bytes("Mapping not found"));
+        vm.stopPrank();
+    }
+
+    //Test if non-owner is unsuccessful to change the lock periods
+    function testFailLockPeriods() public {
+        vm.startPrank(userOne);
+        trueYield.changeLockPeriods(50, 800);
+        vm.expectRevert(bytes("Only owner can modify the staking periods"));
+        vm.stopPrank();
+    }
+
+    //Test if non-owner is unsuccesful to change the unlock date
+    function testFailUnlockDate() public {
+        vm.startPrank(userOne);
+        trueYield.changeUnlockDate(0, 213424234);
+        vm.expectRevert(bytes("Only owner can change Unlock date"));
+        vm.stopPrank();
+    }
+
+    //Test if Another user fails to close the position that someone else created
+    function testFailClosePositionDifferentUser() public {
+        //Create a staking position with userOne
+        vm.startPrank(userOne);
+        vm.deal(userOne, 1 ether);
+
+        trueYield.stakeEther{value: 0.5 ether}(30);
+        vm.stopPrank();
+
+        //Try to close the position with userTwo
+        vm.startPrank(userTwo);
+        vm.deal(userOne, 1 ether);
+        trueYield.closePosition(0);
+        vm.expectRevert(bytes("Only the creator can modify the position"));
         vm.stopPrank();
     }
 

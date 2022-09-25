@@ -6,7 +6,7 @@ import Header from "./components/Header"
 import './App.css';
 import Modal from "./components/Modal"
 
-const CONTRACT_ADDRESS = "0xb57F53E10A6BA8492B2d3aC3FC7CcBfbba5b513e"
+const CONTRACT_ADDRESS = "0x54f3d9598b1cE736E42890d55FAd4549e6819B42"
 
 function App() {
   //General frontend variables

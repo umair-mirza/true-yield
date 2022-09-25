@@ -3,8 +3,6 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/interfaces/IERC20.sol";
-import "./interfaces/ILendingPool.sol";
-import "./interfaces/IWETHGateway.sol";
 
 /// @title TrueYield - DeFi ETH Staking Dapp
 /// @author Umair Mirza
@@ -14,16 +12,7 @@ import "./interfaces/IWETHGateway.sol";
 /// @dev The contract implements WETH Gateway to convert ETH to WETH and deposit to Aave lending pool and Vice versa
 /// @dev Here is the URL for the WETH Gateway: https://docs.aave.com/developers/v/2.0/the-core-protocol/weth-gateway 
 
-contract TrueYield {
-
-    //IWETHGateway interface for the Goerli testnet
-    IWETHGateway public iWethGateway = IWETHGateway(0x3bd3a20Ac9Ff1dda1D99C0dFCE6D65C4960B3627);
-
-    //Lending Pool address for the Aave (v2) lending pool on Goerli testnet
-    address public constant lendingPoolAddress = 0x4bd5643ac6f66a5237E18bfA7d47cF22f1c9F210;
-
-    //Contract Address for the aWeth tokens generated after depositing ETH to keep track of the amount deposited in lending pool
-    address public constant aWethAddress = 0x22404B0e2a7067068AcdaDd8f9D586F834cCe2c5;
+contract MockTrueYield {
 
     address public owner;
 
@@ -95,10 +84,6 @@ contract TrueYield {
         //To get the Ids of the positions a user owns
         positionIdsByAddress[msg.sender].push(currentPositionId);
         currentPositionId += 1;
-
-        //Deposit ETH via WETHGateway
-        //It will convert ETH to WETH and also send funds to the lending pool
-        iWethGateway.depositETH{value: msg.value}(lendingPoolAddress, address(this), 0);
     }
 
     /// @notice This function calculates the interest based on the amountstaked and APY percentage
@@ -133,12 +118,6 @@ contract TrueYield {
         require(positions[positionId].open == true, "Position is closed");
 
         positions[positionId].open = false;
-
-        //Withdraw lended funds via the Weth Gateway
-        //It will convert back the WETH to ETH and send it to the contract
-        //Ensure you set the relevant ERC20 allowance of aWETH, before calling this function, so the WETHGateway contract can burn the associated aWETH
-        IERC20(aWethAddress).approve(address(iWethGateway), type(uint256).max);
-        iWethGateway.withdrawETH(lendingPoolAddress, positions[positionId].weiStaked, address(this));
 
         //If the user is un-staking before the Unlock period, they won't gain any interest
         if(block.timestamp > positions[positionId].unlockDate) {

@@ -13,9 +13,55 @@
   },
   "files": {
     "contracts/TrueYield.sol": {
-      "lastModificationDate": 1663356191764,
-      "contentHash": "266b49ce5cbd303af39512403286ac1f",
+      "lastModificationDate": 1664096544510,
+      "contentHash": "0f75fdbdcf0c5110e677d37b6f79b345",
       "sourceName": "contracts/TrueYield.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts\\interfaces\\DataTypes.sol",
+        "contracts\\interfaces\\ILendingPool.sol",
+        "contracts\\interfaces\\ILendingPoolAddressesProvider.sol",
+        "contracts\\interfaces\\IWETHGateway.sol",
+        "node_modules/@openzeppelin\\contracts/interfaces/IERC20.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "TrueYield": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "TrueYield.sol\\TrueYield.json"
+        }
+      }
+    },
+    "contracts/interfaces/DataTypes.sol": {
+      "lastModificationDate": 1663942272987,
+      "contentHash": "b76e77db993a36584bf3079af20d7122",
+      "sourceName": "contracts/interfaces/DataTypes.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
@@ -46,8 +92,170 @@
       "imports": [],
       "versionRequirement": "^0.8.0",
       "artifacts": {
-        "TrueYield": {
-          "0.8.16+commit.07a7930e.Windows.msvc": "TrueYield.sol\\TrueYield.json"
+        "DataTypes": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "DataTypes.sol\\DataTypes.json"
+        }
+      }
+    },
+    "contracts/interfaces/ILendingPool.sol": {
+      "lastModificationDate": 1663942283766,
+      "contentHash": "3d7b7e0b181bd0881da84925777b485c",
+      "sourceName": "contracts/interfaces/ILendingPool.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "contracts\\interfaces\\DataTypes.sol",
+        "contracts\\interfaces\\ILendingPoolAddressesProvider.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "ILendingPool": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "ILendingPool.sol\\ILendingPool.json"
+        }
+      }
+    },
+    "contracts/interfaces/ILendingPoolAddressesProvider.sol": {
+      "lastModificationDate": 1663942289842,
+      "contentHash": "47857320e16f0b54f5708a01be1b1fca",
+      "sourceName": "contracts/interfaces/ILendingPoolAddressesProvider.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "ILendingPoolAddressesProvider": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "ILendingPoolAddressesProvider.sol\\ILendingPoolAddressesProvider.json"
+        }
+      }
+    },
+    "contracts/interfaces/IWETHGateway.sol": {
+      "lastModificationDate": 1663956402423,
+      "contentHash": "4f195622e210e20865ac1cd214baae3f",
+      "sourceName": "contracts/interfaces/IWETHGateway.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IWETHGateway": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "IWETHGateway.sol\\IWETHGateway.json"
+        }
+      }
+    },
+    "contracts/mocks/MockTrueYield.sol": {
+      "lastModificationDate": 1664099548705,
+      "contentHash": "7f6728896c16893786c0f4d33f530ba9",
+      "sourceName": "contracts/mocks/MockTrueYield.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@openzeppelin\\contracts/interfaces/IERC20.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "MockTrueYield": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "MockTrueYield.sol\\MockTrueYield.json"
         }
       }
     },
@@ -347,9 +555,89 @@
         }
       }
     },
+    "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol": {
+      "lastModificationDate": 1663870368620,
+      "contentHash": "d151fbfe7939989b9acf22797b32058b",
+      "sourceName": "node_modules/@openzeppelin/contracts/interfaces/IERC20.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC20": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "interfaces\\IERC20.sol\\IERC20.json"
+        }
+      }
+    },
+    "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1663870368621,
+      "contentHash": "ad7c2d0af148c8f9f097d65deeb4da6b",
+      "sourceName": "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "london",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC20": {
+          "0.8.16+commit.07a7930e.Windows.msvc": "IERC20.sol\\IERC20.json"
+        }
+      }
+    },
     "test/foundry/TrueYield.t.sol": {
-      "lastModificationDate": 1663403399862,
-      "contentHash": "6b5cfa3a5ef582be0ba0125404ad5431",
+      "lastModificationDate": 1664100298980,
+      "contentHash": "d8f28869c0e5b518c3208560c08caf50",
       "sourceName": "test/foundry/TrueYield.t.sol",
       "solcConfig": {
         "settings": {
@@ -379,14 +667,16 @@
         }
       },
       "imports": [
-        "contracts\\TrueYield.sol",
+        "contracts\\mocks\\MockTrueYield.sol",
         "lib/forge-std/lib/ds-test/src\\test.sol",
         "lib/forge-std/src/Script.sol",
         "lib/forge-std/src/StdJson.sol",
         "lib/forge-std/src\\Test.sol",
         "lib/forge-std/src/Vm.sol",
         "lib/forge-std/src/console.sol",
-        "lib/forge-std/src/console2.sol"
+        "lib/forge-std/src/console2.sol",
+        "node_modules/@openzeppelin\\contracts/interfaces/IERC20.sol",
+        "node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol"
       ],
       "versionRequirement": "^0.8.0",
       "artifacts": {
