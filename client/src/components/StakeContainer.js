@@ -5,7 +5,7 @@ const StakeContainer = ({openStakingModal}) => {
     <div className="mt-9 flex justify-center">
           <div className="relative group w-2/3 xl:w-3/5 px-16 py-6 bg-neutral-900 rounded-lg">
             <div className="absolute inset-0 -z-10 bg-gradient-to-r from-gray-400 to-purple-500 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-200"></div>
-            <div className="flex flex-wrap xl:flex-nowrap gap-x-4 xl:gap-x-0 gap-y-4 lg:space-y-0 justify-center lg:justify-between">
+            <div className="flex flex-wrap lg:flex-nowrap gap-x-4 2xl:gap-x-0 gap-y-4 lg:space-y-0 justify-center lg:justify-between">
 
               <div className="px-3 py-4 xl:px-4 xl:py-6 bg-gradient-to-t from-sky-700 via-zinc-700 to-zinc-800 rounded-lg shadow-lg">
                 <div className="flex flex-col justify-center text-fuchsia-200 text-center">

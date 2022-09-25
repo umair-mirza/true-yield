@@ -8,6 +8,7 @@ import Modal from "./components/Modal"
 import StakeTable from "./components/StakeTable"
 import StakeContainer from "./components/StakeContainer"
 import Heading from "./components/Heading"
+import Footer from "./components/Footer"
 
 const CONTRACT_ADDRESS = "0x3B553618f0450D5427fB75e5B93d0eCfa4A447b5"
 
@@ -129,6 +130,7 @@ function App() {
       <Heading />
       <StakeContainer openStakingModal={openStakingModal} />
       <StakeTable assets={assets} withdraw={withdraw} />
+      <Footer />
 
       {
         showStakeModal && (
