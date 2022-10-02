@@ -50,8 +50,3 @@ Change default network to "Goerli" in Hardhat.config.js
 ```
 npm start
 ```
-
-### Deploy Contract to the Local Hardhat Network
-```
-npx hardhat node
-```
