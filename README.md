@@ -33,6 +33,8 @@ The dapp also integrates with Aave Lending pool so that the staked funds can be 
 * **Frontend** - React.js, Tailwind CSS
 * **Testing Library** - Foundry
 
+## Usage
+
 ### Deploy Contract to the Local Hardhat Network
 ```
 npx hardhat node
